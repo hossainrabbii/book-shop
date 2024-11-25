@@ -14,6 +14,7 @@ const createOrder = async (
     let orderBook
     try {
       orderBook = await bookService.getBookById(payload.product)
+      
     } catch (error: unknown) {
       if (error instanceof Error) {
         if (error.name === 'CastError') {
@@ -30,7 +31,7 @@ const createOrder = async (
     if (!orderBook) {
       res.status(404).json({
         success: false,
-        message: 'Product ID does not match any existing product',
+        message: 'Product not found',
       })
       return
     }
@@ -66,6 +67,7 @@ const createOrder = async (
         quantity: updatedQuantity,
       })
     }
+
     const updateQuantityOutStock = async () => {
       await bookService.updateBook(payload.product, {
         quantity: 0,
@@ -84,12 +86,10 @@ const createOrder = async (
     })
     return
   } catch (error) {
-    // Handle validation errors
     res.json({
       message: 'Something went wrong',
       error,
     })
-    // Pass other errors to the global error handler
     next(error)
   }
 }

@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 import { BookCategory, IBook } from './book.interface'
 
+// book schema
 const BookSchema = new Schema<IBook>(
   {
     title: {
@@ -8,16 +9,12 @@ const BookSchema = new Schema<IBook>(
       required: [true, 'Title is required'],
       minlength: [3, 'Title must be at least 3 characters long'],
       maxlength: [100, 'Title must not exceed 100 characters'],
-      validate: {
-        validator: (value: string) => !/\d/.test(value),
-        message: 'Title should not contain numbers',
-      },
     },
     author: {
       type: String,
       required: true,
       minlength: [3, 'Author must be at least 3 characters long'],
-      maxlength: [50, 'Author must not exceed 50 characters'],
+      maxlength: [100, 'Author must not exceed 100 characters'],
     },
     price: {
       type: Number,

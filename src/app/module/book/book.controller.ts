@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { bookService } from './book.service'
 
+// create a book
 const createBook = async (req: Request, res: Response) => {
   try {
     const payload = req.body
@@ -20,6 +21,7 @@ const createBook = async (req: Request, res: Response) => {
   }
 }
 
+// get all books
 const getBooks = async (_req: Request, res: Response) => {
   try {
     const books = await bookService.getBooks()
@@ -37,6 +39,7 @@ const getBooks = async (_req: Request, res: Response) => {
   }
 }
 
+// get single book
 const getBookById = async (req: Request, res: Response) => {
   try {
     const bookId = req.params.productId
@@ -56,6 +59,7 @@ const getBookById = async (req: Request, res: Response) => {
   }
 }
 
+// update a book
 const updateBook = async (req: Request, res: Response) => {
   try {
     const updatedBook = await bookService.updateBook(
@@ -77,6 +81,8 @@ const updateBook = async (req: Request, res: Response) => {
     })
   }
 }
+
+// delete a book
 const deleteBook = async (req: Request, res: Response) => {
   try {
     await bookService.deleteBook(req.params.productId)
@@ -95,6 +101,8 @@ const deleteBook = async (req: Request, res: Response) => {
     })
   }
 }
+
+// export functions
 export const bookController = {
   createBook,
   getBooks,

@@ -9,7 +9,8 @@ const createOrder = async (payload: IOrder): Promise<IOrder> => {
 const getOrders = async () => {
   return await Order.find()
 }
-// total revenue
+
+// calculate total revenue
 const calculateTotalRevenue = async (): Promise<number> => {
   const result = await Order.aggregate([
     {

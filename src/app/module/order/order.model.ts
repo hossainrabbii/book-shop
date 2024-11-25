@@ -1,6 +1,8 @@
 import mongoose, { Schema } from 'mongoose'
 import { IOrder } from './order.interface'
 
+
+// order schema
 const orderSchema = new Schema<IOrder>(
   {
     email: {

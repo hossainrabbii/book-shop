@@ -24,8 +24,8 @@ Step 2: Install dependencies:
     `npm install`
     or
     `yarn install`
-    
-Step 3: Add .env file in your root directory:
+
+Step 3: Add .env file in your root directory and add:
     `PORT=5000`
     `NODE_ENV=development`
     `DATABASE_URL=<your database url>`

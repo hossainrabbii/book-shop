@@ -14,7 +14,7 @@ const createOrder = async (
     let orderBook
     try {
       orderBook = await bookService.getBookById(payload.product)
-      
+
     } catch (error: unknown) {
       if (error instanceof Error) {
         if (error.name === 'CastError') {
@@ -98,7 +98,7 @@ const getOrders = async (req: Request, res: Response) => {
   try {
     const books = await orderService.getOrders()
     res.json({
-      message: 'Books retrieved successfully',
+      message: 'Orders retrieved successfully',
       success: true,
       data: books,
     })

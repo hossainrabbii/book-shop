@@ -7,6 +7,6 @@ const orderRouter = express.Router()
 // order routes
 orderRouter.post('/', orderController.createOrder)
 orderRouter.get('/revenue', orderController.calculateTotalRevenue)
-orderRouter.get('/orders', orderController.getOrders)
+orderRouter.get('/', orderController.getOrders)
 
 export default orderRouter

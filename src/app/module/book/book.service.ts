@@ -8,8 +8,8 @@ const createBook = async (payload: IBook): Promise<IBook> => {
 }
 
 // get all books
-const getBooks = async () => {
-  return await Book.find()
+const getBooks = async (query: any) => {
+  return await Book.find(query)
 }
 // get single book
 const getBookById = async (id: string) => {

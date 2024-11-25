@@ -20,21 +20,33 @@ const createBook = async (req: Request, res: Response) => {
     })
   }
 }
-
-// get all books
-const getBooks = async (_req: Request, res: Response) => {
+// get all books and filter based on query
+const getBooks = async (req: Request, res: Response) => {
   try {
-    const books = await bookService.getBooks()
+    const { searchTerm } = req.query
+    const query: any = {}
+
+    if (searchTerm) {
+      query.$or = [
+        { title: { $regex: searchTerm, $options: 'i' } },
+        { category: { $regex: searchTerm, $options: 'i' } },
+        { author: { $regex: searchTerm, $options: 'i' } },
+      ]
+    }
+
+    // Fetch books based on query
+    const books = await bookService.getBooks(query)
+
     res.json({
       message: 'Books retrieved successfully',
       success: true,
       data: books,
     })
   } catch (error) {
-    res.json({
+    res.status(500).json({
       success: false,
       message: 'Something went wrong',
-      error,
+      error: error instanceof Error ? error.message : error,
     })
   }
 }
